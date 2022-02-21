@@ -43,7 +43,7 @@ public:
 
 	struct MouseEventArg {
 		glm::vec2 pos, delta, drag, scroll;
-		uint32_t pressed_flag, pressing_flag, released_flag;
+		uint32_t pressed_flag=0, pressing_flag=0, released_flag=0;
 		float parent_scale;
 		ofRectangle getDragRect() const {
 			return {pos-drag, drag.x, drag.y};
@@ -57,6 +57,9 @@ public:
 		bool isPressed(uint32_t button=OF_MOUSE_BUTTON_LEFT) const { return (pressed_flag&(1<<button)) != 0; }
 		bool isPressing(uint32_t button=OF_MOUSE_BUTTON_LEFT) const { return (pressing_flag&(1<<button)) != 0; }
 		bool isReleased(uint32_t button=OF_MOUSE_BUTTON_LEFT) const { return (released_flag&(1<<button)) != 0; }
+		bool isPressedAny() const { return pressed_flag != 0; }
+		bool isPressingAny() const { return pressing_flag != 0; }
+		bool isReleasedAny() const { return released_flag != 0; }
 		bool isScrolledX(float threshold=0) const { return glm::abs(scroll.x) >= threshold; }
 		bool isScrolledY(float threshold=0) const { return glm::abs(scroll.y) >= threshold; }
 		bool isScrolled(float threshold=0) const { return glm::length(scroll) >= threshold; }
@@ -79,7 +82,7 @@ private:
 	mutable ScissorCache scissor_cache_;
 	struct MouseArg {
 		glm::vec2 pos, scroll;
-		uint32_t button_flag;
+		uint32_t button_flag=0;
 	};
 	glm::vec2 mouse_pos_pressed_;
 	bool has_unprocessed_mouse_event_=false;

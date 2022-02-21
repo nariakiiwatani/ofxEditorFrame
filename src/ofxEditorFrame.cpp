@@ -116,7 +116,8 @@ void ofxEditorFrame::resetMatrix()
 void ofxEditorFrame::onMousePressed(ofMouseEventArgs &arg)
 {
 	mouse_prev_ = mouse_;
-	mouse_pos_pressed_ = 
+	mouse_pos_pressed_ =
+	mouse_prev_.pos =
 	mouse_.pos = arg;
 	mouse_.button_flag |= (1<<arg.button);
 	mouse_.scroll = {0,0};
