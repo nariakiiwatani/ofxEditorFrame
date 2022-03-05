@@ -52,7 +52,7 @@ public:
 			return isReleased(button) && glm::length(drag)<=threshold;
 		}
 		bool isDragged(uint32_t button=OF_MOUSE_BUTTON_LEFT, float threshold=0) const {
-			return isPressing(button) && glm::length(delta)>=threshold;
+			return isPressing(button) && glm::length(delta)>threshold;
 		}
 		bool isPressed(uint32_t button=OF_MOUSE_BUTTON_LEFT) const { return (pressed_flag&(1<<button)) != 0; }
 		bool isPressing(uint32_t button=OF_MOUSE_BUTTON_LEFT) const { return (pressing_flag&(1<<button)) != 0; }
@@ -60,9 +60,9 @@ public:
 		bool isPressedAny() const { return pressed_flag != 0; }
 		bool isPressingAny() const { return pressing_flag != 0; }
 		bool isReleasedAny() const { return released_flag != 0; }
-		bool isScrolledX(float threshold=0) const { return glm::abs(scroll.x) >= threshold; }
-		bool isScrolledY(float threshold=0) const { return glm::abs(scroll.y) >= threshold; }
-		bool isScrolled(float threshold=0) const { return glm::length(scroll) >= threshold; }
+		bool isScrolledX(float threshold=0) const { return glm::abs(scroll.x) > threshold; }
+		bool isScrolledY(float threshold=0) const { return glm::abs(scroll.y) > threshold; }
+		bool isScrolled(float threshold=0) const { return glm::length(scroll) > threshold; }
 	};
 	ofEvent<const MouseEventArg> on_mouse_event_;
 protected:
@@ -72,7 +72,7 @@ protected:
 	ofRectangle region_;
 	
 	struct Settings {
-		float min_scale = 0.1f;
+		float min_scale = 0.01f;
 	} settings_;
 private:
 	struct ScissorCache {
