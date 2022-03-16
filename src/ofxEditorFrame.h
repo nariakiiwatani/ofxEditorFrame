@@ -45,6 +45,9 @@ public:
 		glm::vec2 pos, delta, drag, scroll;
 		uint32_t pressed_flag=0, pressing_flag=0, released_flag=0;
 		float parent_scale;
+		glm::vec2 getPressedPos() const {
+			return pos - drag;
+		}
 		ofRectangle getDragRect() const {
 			return {pos-drag, drag.x, drag.y};
 		}

@@ -125,7 +125,8 @@ void ofxEditorFrame::onMousePressed(ofMouseEventArgs &arg)
 }
 void ofxEditorFrame::onMouseReleased(ofMouseEventArgs &arg)
 {
-	mouse_.button_flag &= ~(1<<arg.button);
+//	mouse_.button_flag &= ~(1<<arg.button);
+	mouse_.button_flag = 0;
 	mouse_.scroll = {0,0};
 	has_unprocessed_mouse_event_ = true;
 }
